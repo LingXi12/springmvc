@@ -1,0 +1,37 @@
+mybatis 是一个优秀的基于java的持久层框架，它内部封装了 jdbc，使开发者只需要关注sql语句本身，而不需要花费精力  去处理加载驱动、创建连接、创建statement等繁杂的过程。
+mybatis通过xml或注解的方式将要执行的各种 statement配 置起来，并通过java对象和statement中sql的动态参数进行  映射生成最终执行的sql语句。
+最后mybatis框架执行sql并将结果映射为java对象并返回。采 用ORM思想解决了实体和数据库映射的问题，对jdbc 进行了 封装，屏蔽了jdbc api 底层访问细节，使我们不用与jdbc api 打交道，就可以完成对数据库的持久化操作。
+
+Mapper 接口开发需要遵循以下规范：
+1、 Mapper.xml文件中的namespace与mapper接口的全限定名相同
+2、 Mapper接口方法名和Mapper.xml中定义的每个statement的id相同
+3、 Mapper接口方法的输入参数类型和mapper.xml中定义的每个sql的parameterType的类型相同
+4、 Mapper接口方法的输出参数类型和mapper.xml中定义的每个sql的resultType的类型相同
+
+MyBatis的Dao层实现的两种方式：
+手动对Dao进行实现：传统开发方式   
+代理方式对Dao进行实现
+
+foreach标签的属性含义如下：
+<foreach>标签用于遍历集合，它的属性：
+•   collection：代表要遍历的集合元素，注意编写时不要写#{}
+•   open：代表语句的开始部分
+•   close：代表结束部分
+•   item：代表遍历集合的每个元素，生成的变量名
+•   sperator：代表分隔符
+重写类型处理器或创建你自己的类型处理器来处理不支持的或非标准的类型。具体做法为：实现
+org.apache.ibatis.type.TypeHandler 接口， 或继承一个很便利的类 org.apache.ibatis.type.BaseTypeHandler 
+
+MyBatis多表配置方式：
+一对一配置： 使用<resultMap>+<association> 做配置
+一对多配置：使用<resultMap>+<collection>做配置
+多对多配置： 使用<resultMap>+<collection>做配置
+
+@Insert：实现新增
+@Update：实现更新
+@Delete：实现删除
+@Select：实现查询
+@Result：实现结果集封装
+@Results：可以与@Result 一起使用，封装多个结果集
+@One：实现一对一结果集封装
+@Many：实现一对多结果集封装
